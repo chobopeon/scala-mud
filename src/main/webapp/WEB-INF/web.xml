@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" version="3.0" metadata-complete="true">
+	<description>ScalaMud</description>
+	<display-name>ScalaMud 0.1</display-name>
+	<distributable/>
+	<servlet>
+		<display-name>ScalaMud Action Handler Servlet</display-name>
+		<servlet-name>ScalaMudActionHandlerServlet</servlet-name>
+		<servlet-class>net.martinsnyder.scalamud.ActionHandler</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ScalaMudActionHandlerServlet</servlet-name>
+		<url-pattern>/ActionHandler</url-pattern>
+	</servlet-mapping>
+</web-app>

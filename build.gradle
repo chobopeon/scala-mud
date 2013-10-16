@@ -1,0 +1,41 @@
+apply plugin: 'scala'
+apply plugin: 'idea'
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+repositories {
+    mavenCentral()
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.7'
+}
+
+configurations {
+    provided
+    provided.extendsFrom(compile)
+}
+
+sourceSets {
+    main { compileClasspath += configurations.provided }
+}
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.10.2'
+	provided 'javax.servlet:javax.servlet-api:3.0.1'
+	testCompile 'org.scalatest:scalatest_2.10:1.9.1'
+	testCompile 'junit:junit:4.11'
+}
+
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.useAnt = false
+}
+
+idea {
+    module {
+        //if you need to put 'provided' dependencies on the classpath
+        scopes.PROVIDED.plus += configurations.provided
+    }
+}
+
+[jettyRun, jettyRunWar]*.webDefaultXml = file("src/test/jetty/webdefault.xml")
